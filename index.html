@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب خدمة تصميم احترافية</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    <div class="container">
+        <!-- مكان الشعار في الأعلى -->
+        <header class="main-header">
+            <div class="logo-container">
+                <!-- استبدل الرابط أدناه برابط شعارك الخاص (يفضل PNG شفاف أو SVG) -->
+                <img src="Asset 1@4x.png" alt="شعارك" class="logo">
+                <!-- مثال: <img src="your-logo.png" alt="شعارك" class="logo"> -->
+            </div>
+            <h1>طلب خدمة تصميم احترافية</h1>
+            <p class="intro">اختر الخدمات التي تحتاجها، وسيتم عرض الباقات المناسبة تلقائياً!</p>
+        </header>
+
+        <!-- استبدل الرابط أدناه برابط Formspree الخاص بك -->
+        <form action="https://formspree.io/f/mgovygag" method="POST" id="design-form">
+            <!-- نوع الخدمة المطلوبة -->
+            <section class="section service-type">
+                <h2>نوع الخدمة المطلوبة</h2>
+                <p class="description">يمكنك اختيار أكثر من خدمة واحدة</p>
+                <div class="services-grid">
+                    <label class="service-option">
+                        <input type="checkbox" name="services[]" value="تصميم شعار" id="service_logo" onchange="updatePackages()">
+                        <span class="checkmark"></span>
+                        <div class="service-content">
+                            <img src="https://www.seoclerk.com/pics/645701-17wcWn1545136595.jpg" alt="تصميم شعار">
+                            <h3>تصميم شعار</h3>
+                            <p>شعار احترافي يعبر عن هويتك التجارية</p>
+                        </div>
+                    </label>
+
+                    <label class="service-option">
+                        <input type="checkbox" name="services[]" value="تصميم بنر" id="service_banner" onchange="updatePackages()">
+                        <span class="checkmark"></span>
+                        <div class="service-content">
+                            <img src="https://img.freepik.com/premium-vector/professional-corporate-business-colorful-roll-up-banner-design-template_535100-69.jpg" alt="تصميم بنر">
+                            <h3>تصميم بنر</h3>
+                            <p>بنرات إعلانية جذابة للمواقع أو الفعاليات</p>
+                        </div>
+                    </label>
+
+                    <label class="service-option">
+                        <input type="checkbox" name="services[]" value="تصميم سوشل ميديا" id="service_social" onchange="updatePackages()">
+                        <span class="checkmark"></span>
+                        <div class="service-content">
+                            <img src="https://i.fbcd.co/products/original/preview-01-8b1a42ab941222adb890cb75299a62c7a60db2e424122b884fbe53e9ed661079.jpg" alt="تصميم سوشل ميديا">
+                            <h3>تصميم سوشل ميديا</h3>
+                            <p>منشورات وبوستات جذابة لجميع المنصات</p>
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <!-- معلومات العميل -->
+            <section class="section client-info">
+                <h2>معلوماتك الشخصية</h2>
+                <p class="description">ساعدنا في فهم احتياجاتك بشكل أدق</p>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">اسم العميل</label>
+                        <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+213 000 00 00 00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="business_name">اسم البزنس أو المشروع</label>
+                        <input type="text" id="business_name" name="business_name" placeholder="اسم علامتك التجارية أو مشروعك">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="details">تفاصيل إضافية عن الطلب</label>
+                        <textarea id="details" name="details" placeholder="صف لنا فكرتك، الألوان المفضلة، الأسلوب المطلوب، أو أي أمثلة تحبها..." required></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- باقات الأسعار الديناميكية -->
+            <section class="section packages-section" id="packages-section" style="display:none;">
+                <h2 id="packages-title">اختر باقتك المفضلة</h2>
+                <p class="description" id="packages-desc">باقات مخصصة حسب اختيارك</p>
+                <div class="bento-grid" id="packages-container">
+                    <!-- الباقات تُضاف بالـ JS -->
+                </div>
+            </section>
+
+            <button type="submit" id="submit-btn" style="display:none;">إرسال الطلب الآن</button>
+        </form>
+    </div>
+
+    <!-- باقي الـ JavaScript كما هو (لا تغيير) -->
+    <script>
+        const packages = {
+            logo: {
+                title: "باقات تصميم الشعارات",
+                items: [
+                    {name: "Basic", priceDZD: "5,000 دج", priceUSD: "33 $", features: ["شعار بسيط 1 خيار", "تعديل واحد"]},
+                    {name: "Standard", priceDZD: "15,000 دج", priceUSD: "67 $", features: ["شعار مع 2 خيارات", "2 تعديلات"], highlighted: true},
+                    {name: "Premium", priceDZD: "25,000 دج", priceUSD: "133 $", features: ["شعار احترافي مع 3 خيارات", "5 تعديلات"]}
+                ]
+            },
+            social: {
+                title: "باقات تصميم السوشل ميديا",
+                items: [
+                    {name: "Basic", priceDZD: "7,500 دج", priceUSD: "50 $", features: ["3 منشورات"]},
+                    {name: "Standard", priceDZD: "15,000 دج", priceUSD: "100 $", features: ["5 منشورات"], highlighted: true},
+                    {name: "Premium", priceDZD: "35,000 دج", priceUSD: "200 $", features: ["10 منشورات"]}
+                ]
+            },
+            banner: {
+                title: "باقات تصميم البنرات",
+                items: [
+                    {name: "Basic", priceDZD: "6,000 دج", priceUSD: "40 $", features: ["بانر واحد بسيط"]},
+                    {name: "Standard", priceDZD: "12,000 دج", priceUSD: "80 $", features: ["2 بانر"], highlighted: true},
+                    {name: "Premium", priceDZD: "25,000 دج", priceUSD: "167 $", features: ["3 بانرات"]}
+                ]
+            },
+            "logo-social": {
+                title: "باقات شعار + سوشل ميديا",
+                items: [
+                    {name: "Basic", priceDZD: "15,000 دج", priceUSD: "80 $", features: ["شعار + 3 منشورات"]},
+                    {name: "Standard", priceDZD: "26,000 دج", priceUSD: "147 $", features: ["شعار + 5 منشورات"], highlighted: true},
+                    {name: "Premium", priceDZD: "47,000 دج", priceUSD: "300 $", features: ["شعار + 10 منشورات"]}
+                ]
+            },
+            "logo-banner": {
+                title: "باقات شعار + بنر",
+                items: [
+                    {name: "Basic", priceDZD: "13,000 دج", priceUSD: "73 $", features: ["شعار + بانر واحد"]},
+                    {name: "Standard", priceDZD: "23,000 دج", priceUSD: "133 $", features: ["شعار + 2 بانر"], highlighted: true},
+                    {name: "Premium", priceDZD: "40,000 دج", priceUSD: "267 $", features: ["شعار + 3 بانرات"]}
+                ]
+            },
+            "banner-social": {
+                title: "باقات بنر + سوشل ميديا",
+                items: [
+                    {name: "Basic", priceDZD: "17,000 دج", priceUSD: "87 $", features: ["1 بانر + 3 منشورات"]},
+                    {name: "Standard", priceDZD: "27,000 دج", priceUSD: "167 $", features: ["2 بانر + 5 منشورات"], highlighted: true},
+                    {name: "Premium", priceDZD: "54,000 دج", priceUSD: "333 $", features: ["3 بانر + 10 منشورات"]}
+                ]
+            },
+            all: {
+                title: "باقات كاملة (شعار + بنر + سوشل ميديا)",
+                items: [
+                    {name: "Basic", priceDZD: "28,000 دج", priceUSD: "120 $", features: ["شعار + بانر + 3 منشورات"]},
+                    {name: "Standard", priceDZD: "37,000 دج", priceUSD: "233 $", features: ["شعار + 2 بانر + 5 منشورات"], highlighted: true},
+                    {name: "Premium", priceDZD: "65,000 دج", priceUSD: "433 $", features: ["شعار + 3 بانر + 10 منشورات"]}
+                ]
+            }
+        };
+
+        function updatePackages() {
+            const logo = document.getElementById('service_logo').checked;
+            const banner = document.getElementById('service_banner').checked;
+            const social = document.getElementById('service_social').checked;
+
+            let key = '';
+            if (logo && banner && social) key = 'all';
+            else if (logo && banner) key = 'logo-banner';
+            else if (logo && social) key = 'logo-social';
+            else if (banner && social) key = 'banner-social';
+            else if (logo) key = 'logo';
+            else if (banner) key = 'banner';
+            else if (social) key = 'social';
+
+            const section = document.getElementById('packages-section');
+            const container = document.getElementById('packages-container');
+            const title = document.getElementById('packages-title');
+            const submit = document.getElementById('submit-btn');
+
+            if (key === '') {
+                section.style.display = 'none';
+                submit.style.display = 'none';
+                return;
+            }
+
+            const pkg = packages[key];
+            title.textContent = pkg.title;
+
+            container.innerHTML = '';
+            pkg.items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'package' + (item.highlighted ? ' highlighted' : '');
+                div.innerHTML = `
+                    <h3>${item.name}</h3>
+                    <div class="price">
+                        <span class="dzd">${item.priceDZD}</span>
+                        <span class="usd">${item.priceUSD}</span>
+                    </div>
+                    <ul>
+                        ${item.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                    <label>
+                        <input type="radio" name="selected_package" 
+                               value="${item.name} - ${item.priceDZD} (${item.priceUSD}) - ${item.features.join(' | ')}" required>
+                        اختر هذه الباقة
+                    </label>
+                `;
+                container.appendChild(div);
+            });
+
+            section.style.display = 'block';
+            submit.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
