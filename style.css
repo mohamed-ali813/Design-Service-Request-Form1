@@ -380,3 +380,145 @@ button[type="submit"]:hover {
     .container { padding: 30px 20px; }
     .glow-text { font-size: 2.4rem; }
 } 
+/* ===== إضافات الحركة والأنيميشن ===== */
+/* دعم تفضيل تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* قواعد الدخول العامة */
+.anim-hidden { opacity: 0; transform: translateY(14px) scale(0.995); }
+.anim-fade-in { animation: fadeInUp 700ms cubic-bezier(.2,.9,.2,1) both; }
+.anim-pop { animation: popIn 500ms cubic-bezier(.2,.9,.2,1) both; }
+
+/* شعار متحرك */
+.logo { transform-origin: center; animation: logoFloat 6s ease-in-out infinite, popIn 600ms cubic-bezier(.2,.9,.2,1) both; }
+
+/* تدرج وتأخير عناصر القائمة (stagger) */
+.services-grid .service-option, .bento-grid .package, .form-grid .form-group {
+    opacity: 0;
+    transform: translateY(18px);
+    animation-name: fadeInUp;
+    animation-duration: 700ms;
+    animation-timing-function: cubic-bezier(.2,.9,.2,1);
+    animation-fill-mode: both;
+}
+.services-grid .service-option:nth-child(1) { animation-delay: 120ms; }
+.services-grid .service-option:nth-child(2) { animation-delay: 240ms; }
+.services-grid .service-option:nth-child(3) { animation-delay: 360ms; }
+.services-grid .service-option:nth-child(4) { animation-delay: 480ms; }
+.services-grid .service-option:nth-child(5) { animation-delay: 600ms; }
+.services-grid .service-option:nth-child(6) { animation-delay: 720ms; }
+.bento-grid .package:nth-child(1) { animation-delay: 140ms; }
+.bento-grid .package:nth-child(2) { animation-delay: 280ms; }
+.bento-grid .package:nth-child(3) { animation-delay: 420ms; }
+.bento-grid .package:nth-child(4) { animation-delay: 560ms; }
+.form-grid .form-group:nth-child(1) { animation-delay: 120ms; }
+.form-grid .form-group:nth-child(2) { animation-delay: 220ms; }
+.form-grid .form-group:nth-child(3) { animation-delay: 320ms; }
+.form-grid .form-group:nth-child(4) { animation-delay: 420ms; }
+.form-grid .form-group:nth-child(5) { animation-delay: 520ms; }
+
+/* تأثيرات تفاعلية محسنة */
+.service-option:hover { transform: translateY(-10px) scale(1.01); }
+.service-option:active { transform: translateY(-6px) scale(0.995); }
+
+.checkmark { transition: transform 260ms cubic-bezier(.2,.9,.2,1), background-color 260ms; }
+.service-option input:checked ~ .checkmark { transform: scale(1.06); }
+.service-option input:checked ~ .checkmark::after { animation: popIn 220ms ease both; }
+
+/* أزرار وتحديد باقات */
+button[type="submit"], .package label {
+    will-change: transform, box-shadow;
+}
+button[type="submit"]:hover { animation: pulse 900ms infinite ease-in-out; }
+
+/* مؤثر دخول للعناوين */
+h1, h2 { opacity: 0; transform: translateY(8px); animation: fadeInUp 600ms ease both; }
+h1 { animation-delay: 120ms; }
+h2 { animation-delay: 180ms; }
+
+/* input focus animated glow */
+input:focus, textarea:focus { box-shadow: 0 0 0 6px rgba(156,39,176,0.12); transform: translateY(-2px); }
+
+/* keyframes */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(18px); }
+    60% { opacity: 1; transform: translateY(-6px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.94) translateY(6px); }
+    60% { opacity: 1; transform: scale(1.02) translateY(-4px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes logoFloat {
+    0% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-6px) rotate(1deg); }
+    100% { transform: translateY(0) rotate(-1deg); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 8px 20px rgba(156,39,176,0.35); transform: translateY(0); }
+    50% { box-shadow: 0 18px 40px rgba(156,39,176,0.22); transform: translateY(-4px); }
+    100% { box-shadow: 0 8px 20px rgba(156,39,176,0.35); transform: translateY(0); }
+}
+
+/* ظهور الحاوية والمقاطع تدريجياً */
+.container { opacity: 0; transform: translateY(12px); animation: fadeInUp 700ms ease both; animation-delay: 80ms; }
+.section { opacity: 0; transform: translateY(12px); animation: fadeInUp 700ms ease both; }
+.section:nth-of-type(1) { animation-delay: 160ms; }
+.section:nth-of-type(2) { animation-delay: 240ms; }
+.section:nth-of-type(3) { animation-delay: 320ms; }
+
+/* مساعدة لتشغيل الأنيميشن يدوياً عبر إضافة الفئة */
+.animate-all .services-grid .service-option,
+.animate-all .bento-grid .package,
+.animate-all .form-grid .form-group,
+.animate-all h1, .animate-all h2 { opacity: 1; transform: none; }
+
+/* نهاية إضافات الحركة */
+
+
+/* صغير جداً - هواتف ضيقة */
+@media (max-width: 600px) {
+    .container { padding: 10px; border-radius: 12px; }
+    .logo { max-width: 140px; max-height: 70px; }
+    .services-grid { grid-template-columns: 1fr; gap: 14px; }
+    .service-content img { height: 140px; }
+    .bento-grid { grid-template-columns: 1fr; gap: 18px; }
+    .form-grid { gap: 12px; }
+    .form-grid .form-group { width: 100%; }
+    .package { padding: 20px 16px; }
+    .package .price .usd { font-size: 2rem; }
+    .bg-animation { display: none; }
+    .motion-toggle { right: 12px; left: auto; top: 12px; padding: 8px 10px; }
+}
+
+/* شاشات متوسطة - تابلت */
+@media (min-width: 601px) and (max-width: 991px) {
+    .container { max-width: 760px; padding: 30px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .service-content img { height: 180px; }
+    .bento-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* شاشات كبيرة */
+@media (min-width: 992px) {
+    .container { max-width: 1200px; padding: 60px; }
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    .logo { max-width: 280px; max-height: 140px; }
+    .service-content img { height: 220px; }
+    .bento-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+}
+
+/* تحسين القراءة على شاشات فائقة الاتساع */
+@media (min-width: 1400px) {
+    .container { max-width: 1400px; padding: 80px; }
+    h1 { font-size: 3.6rem; }
+    .package .price .usd { font-size: 3.4rem; }
+}
